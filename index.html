@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>無標題文件</title>
+<link rel="stylesheet" href="../reset.css">
+<style>
+	.wrapper{
+		position:relative;
+		padding:10px;
+		box-sizing:padding-box;
+		perspective:1000px;
+		height:500px;
+	}
+	.big{
+		//margin:0 auto;
+		//display:table;
+		position:absolute;
+		//margin:auto;
+		left:30%;
+		top:40%;
+		//right:0px;
+		width:600px;
+		height:150px;
+		transition:transform 1s;
+		transform-style:preserve-3d;
+	}
+	.cat1{
+		position:absolute;
+		width:600px;
+		height:150px;
+		background-color:#F00;
+		transform:translateZ(75px);
+		transition:all 1s;
+	}
+	.cat2{
+		position:absolute;
+		width:600px;
+		height:150px;
+		background-color:#0F0;
+		transform:rotateX(-90deg) translateZ(75px);
+		//transform-origin:center top;
+		transition:all 1s;
+	}
+	.big:hover{
+		transform:translateZ(-75px) rotateX(95deg);
+	}
+</style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="big">
+            <div class="cat1"></div>
+            <div class="cat2"></div>
+        </div>
+    </div>
+</body>
+</html>
