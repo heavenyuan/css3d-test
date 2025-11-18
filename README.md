@@ -1,21 +1,21 @@
-# css3d-test
+# poc-css3d
 
 CSS 3D 變換效果展示專案，包含多個 3D 互動範例。
 
 ## 線上演示
 
-**👉 [立即體驗所有演示](https://heavenyuan.github.io/css3d-test/demo.html)**
+**👉 [立即體驗所有演示](https://heavenyuan.github.io/poc-css3d/demo.html)**
 
 或直接訪問個別演示：
 
-- [基礎 3D 翻轉](https://heavenyuan.github.io/css3d-test/index.html)
-- [雙面卡片翻轉](https://heavenyuan.github.io/css3d-test/index_2cat.html)
-- [3D 旋轉木馬](https://heavenyuan.github.io/css3d-test/index_css3d.html)
+- [基礎 3D 翻轉](https://heavenyuan.github.io/poc-css3d/index.html)
+- [雙面卡片翻轉](https://heavenyuan.github.io/poc-css3d/index_2cat.html)
+- [3D 旋轉木馬](https://heavenyuan.github.io/poc-css3d/index_css3d.html)
 
 ## 專案結構
 
 ```
-css3d-test/
+poc-css3d/
 ├── index.html          # 基礎 3D 翻轉效果
 ├── index_2cat.html     # 雙面卡片翻轉
 ├── index_css3d.html    # 3D 旋轉木馬
