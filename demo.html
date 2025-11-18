@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3D 演示集合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2em;
+            margin-bottom: 50px;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .demo-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .demo-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .demo-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        .demo-desc {
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .demo-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .tech-tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+        }
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS3D Transform 演示</h1>
+        <p class="subtitle">探索 CSS3D 的無限可能</p>
+
+        <div class="demo-grid">
+            <a href="index.html" class="demo-card">
+                <div class="demo-number">01</div>
+                <div class="demo-title">基礎 3D 翻轉</div>
+                <div class="demo-desc">
+                    兩個方塊的立體翻轉效果，滑鼠懸停時觸發 3D 旋轉動畫。
+                </div>
+                <div class="demo-tech">
+                    <span class="tech-tag">translateZ</span>
+                    <span class="tech-tag">rotateX</span>
+                    <span class="tech-tag">preserve-3d</span>
+                </div>
+            </a>
+
+            <a href="index_2cat.html" class="demo-card">
+                <div class="demo-number">02</div>
+                <div class="demo-title">雙面卡片翻轉</div>
+                <div class="demo-desc">
+                    兩張圖片背對背排列，點擊後翻轉 180 度，展示卡片翻面效果。
+                </div>
+                <div class="demo-tech">
+                    <span class="tech-tag">rotateY</span>
+                    <span class="tech-tag">backface-visibility</span>
+                    <span class="tech-tag">transition</span>
+                </div>
+            </a>
+
+            <a href="index_css3d.html" class="demo-card">
+                <div class="demo-number">03</div>
+                <div class="demo-title">3D 旋轉木馬</div>
+                <div class="demo-desc">
+                    15 張圖片環繞排列，點擊任意圖片會自動旋轉至中央，支援動態縮放和透明度變化。
+                </div>
+                <div class="demo-tech">
+                    <span class="tech-tag">perspective</span>
+                    <span class="tech-tag">圓周排列</span>
+                    <span class="tech-tag">動態計算</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>💡 所有演示均使用純 CSS3 和原生 JavaScript 實現，無需任何框架</p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/你的帳號/CSS3D-TEST" target="_blank">查看源碼</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
