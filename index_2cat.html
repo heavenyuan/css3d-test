@@ -1,74 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>無標題文件</title>
-<link rel="stylesheet" href="../reset.css">
-<style>
-	html{
-		padding:10px;
-		box-sizing:padding-box;
-		perspective:1600px;
-	}
-	.big{
-		margin:0 auto;
-		display:table;
-		position:absolute;
-		//margin:auto;
-		left:50%;
-		top:50%;
-		//right:0px;
-		width:200px;
-		height:250px;
-		//background-repeat: no-repeat;
-		//background-image: url(cat.png);
-		//background-position: 50% 50%;
-		//background-size: 100% auto;
-		//transform:rotateY(0deg) translateX(0px) rotateX(60deg);
-		transition:transform 1s;
-		//transform-origin:left center;
-		backface-visibility:hidden;
-	}
-	.cat1{
-		position:absolute;
-		width:200px;
-		height:250px;
-		background:url(cat.png) no-repeat;
-		background-position: 50% 50%;
-		background-size: 100% auto;
-	}
-	.cat2{
-		position:absolute;
-		width:200px;
-		height:250px;
-		background:url(cat2.png) no-repeat;
-		background-position: 50% 50%;
-		background-size: 100% auto;
-	}
-</style>
-<script src="../js/jquery-1.11.2.min.js"></script>
-<script>
-	$(function(){
-		var a=180;
-		$('.big').each(function(index, element) {
-			var r=a*index;
-            $(element).css({'transform':'rotateY('+r+'deg)'}).data({r:r});
-			$(element).bind({
-				'click':function(e){
-					$('.big').each(function(i, el) {
-						var xr=$(el).data().r+a;
-                        $(el).css({'transform':'rotateY('+xr+'deg)'});
-						$(el).data().r=xr;
-                    });
-				}
-			});
-        });
-	});
-</script>
-</head>
+	<head>
+		<meta charset="utf-8" />
+		<title>無標題文件</title>
+		<style>
+			html {
+				padding: 10px;
+				box-sizing: padding-box;
+				perspective: 1600px;
+			}
+			.big {
+				margin: 0 auto;
+				display: table;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 200px;
+				height: 250px;
+				transition: transform 1s;
+				backface-visibility: hidden;
+				background: url(cat.png) no-repeat;
+				background-position: 50% 50%;
+				background-size: 100% auto;
+				cursor: pointer;
+			}
+			.cat2 {
+				background-image: url(cat2.png);
+			}
+		</style>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				var a = 180;
+				var elementData = new WeakMap();
+				var blocks = document.querySelectorAll(".big");
 
-<body>
-	<div class="big cat1"></div>
-	<div class="big cat2"></div>
-</body>
+				blocks.forEach(function (element, index) {
+					var r = a * index;
+					element.style.transform = "rotateY(" + r + "deg)";
+					elementData.set(element, { r: r });
+
+					element.addEventListener("click", function (e) {
+						blocks.forEach(function (el) {
+							var data = elementData.get(el);
+							var xr = data.r + a;
+							el.style.transform = "rotateY(" + xr + "deg)";
+							data.r = xr;
+						});
+					});
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="big cat1"></div>
+		<div class="big cat2"></div>
+	</body>
 </html>

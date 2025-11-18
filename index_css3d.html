@@ -1,91 +1,95 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>無標題文件</title>
-<link rel="stylesheet" href="../reset.css">
-<style>
-	html{
-		padding:10px;
-		box-sizing:padding-box;
-		perspective:1600px;
-		transform-style:preserve-3d;
-	}
-	.big{
-		//background-color:#0F3;
-		//margin:0 auto;
-		position:absolute;
-		//margin:auto;
-		left:40%;
-		top:20%;
-		//right:0px;
-		width:200px;
-		height:250px;
-		background-repeat: no-repeat;
-		background-image: url(cat2.png);
-		background-position: 50% 50%;
-		background-size: 100% auto;
-		/*transform:rotateY(0deg) translateX(0px);*/
-		transition:transform .5s, z-index 0s linear .5s;
-		//transform-origin:left center;
-		//backface-visibility:hidden;
-		cursor:pointer;
-	}
-</style>
-<script src="../js/jquery-1.11.2.min.js"></script>
-<script src="../js/arrayIndexOf.js"></script>
-<script>
-	$(function(){
-		var n=15;
-		var l=20*n;
-		var r=360/n;
-		var dx=0;
-		var total=n-1;
-		var arr=[];
-		for(var i=0;i<n;i++){
-			$('body').append($('<div class="big"></div>'));
-		}
-		$('.big').each(function(index, element) {
-			var dr=r*index;
-			var z=mathZ(dr);
-			var s=mathScale(dr);
-			arr.push(index);
-            $(element).data({a:r*index,i:index}).css({'transform':'rotateX(-5deg) rotateY('+dr+'deg) translateZ('+l+'px) scale('+s+')','opacity':s});
-			$(element).bind('click',arrChange);
-        });
-		for(var i=0;i<Math.floor(n/2);i++){
-			arrUnshift();
-		}
-		function arrUnshift(){
-			arr.unshift(arr.pop());
-		}
-		function arrPush(){
-			arr.push(arr.shift());
-		}
-		function arrChange(e){
-			var d=$(e.target).data().i;
-			var a=-r;
-			(arr.indexOf(d)>=arr.indexOf(dx))?a=-r:a=r;
-			$('.big').each(function(i, el) {
-				var dr=($(el).data().a+a);
-				var z=mathZ(dr);
-				var s=mathScale(dr);
-				if(dr%360==0)dx=i;
-				$(el).css({'transform':'rotateX(-5deg) rotateY('+dr+'deg) translateZ('+l+'px) scale('+s+')','opacity':s});
-				$(el).data().a=dr;
-			});
-			(a<0)?arrPush():arrUnshift();
-		}
-		function mathScale(angle){
-			return (Math.abs((180-(Math.abs(angle)%360))/180))*.5+.5;
-		}
-		function mathZ(angle){
-			return Math.abs(Math.round((180-(Math.abs(angle)%360))/180*Math.round(n/2)));
-		}
-	});
-</script>
-</head>
+	<head>
+		<meta charset="utf-8" />
+		<title>無標題文件</title>
+		<style>
+			html {
+				padding: 10px;
+				box-sizing: padding-box;
+				perspective: 1600px;
+				transform-style: preserve-3d;
+			}
+			.big {
+				position: absolute;
+				left: 40%;
+				top: 20%;
+				width: 200px;
+				height: 250px;
+				background-repeat: no-repeat;
+				background-image: url(cat2.png);
+				background-position: 50% 50%;
+				background-size: 100% auto;
+				transition: transform 0.5s, z-index 0s linear 0.5s;
+				cursor: pointer;
+			}
+		</style>
+		<script src="arrayIndexOf.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				var n = 15;
+				var l = 20 * n;
+				var r = 360 / n;
+				var dx = 0;
+				var total = n - 1;
+				var arr = [];
+				var elementData = new WeakMap();
 
-<body>
-</body>
+				for (var i = 0; i < n; i++) {
+					var div = document.createElement("div");
+					div.className = "big";
+					document.body.appendChild(div);
+				}
+
+				var blocks = document.querySelectorAll(".big");
+				blocks.forEach(function (element, index) {
+					var dr = r * index;
+					var z = mathZ(dr);
+					var s = mathScale(dr);
+					arr.push(index);
+
+					elementData.set(element, { a: r * index, i: index });
+					element.style.transform = "rotateX(-5deg) rotateY(" + dr + "deg) translateZ(" + l + "px) scale(" + s + ")";
+					element.style.opacity = s;
+					element.addEventListener("click", arrChange);
+				});
+
+				for (var i = 0; i < Math.floor(n / 2); i++) {
+					arrUnshift();
+				}
+
+				function arrUnshift() {
+					arr.unshift(arr.pop());
+				}
+				function arrPush() {
+					arr.push(arr.shift());
+				}
+				function arrChange(e) {
+					var d = elementData.get(e.target).i;
+					var a = -r;
+					arr.indexOf(d) >= arr.indexOf(dx) ? (a = -r) : (a = r);
+
+					blocks.forEach(function (el, i) {
+						var data = elementData.get(el);
+						var dr = data.a + a;
+						var z = mathZ(dr);
+						var s = mathScale(dr);
+						if (dr % 360 == 0) dx = i;
+						el.style.transform = "rotateX(-5deg) rotateY(" + dr + "deg) translateZ(" + l + "px) scale(" + s + ")";
+						el.style.opacity = s;
+						data.a = dr;
+					});
+					a < 0 ? arrPush() : arrUnshift();
+				}
+				function mathScale(angle) {
+					return Math.abs((180 - (Math.abs(angle) % 360)) / 180) * 0.5 + 0.5;
+				}
+				function mathZ(angle) {
+					return Math.abs(Math.round(((180 - (Math.abs(angle) % 360)) / 180) * Math.round(n / 2)));
+				}
+			});
+		</script>
+	</head>
+
+	<body></body>
 </html>
